@@ -1,71 +1,32 @@
-# 🧠 PHI // DRIFT • Cognitive Core
+# 🛡️ Timeless Hayoka | Web3 Security Researcher
 
-*“ἀλήθεια — the light that makes the hidden visible.”*
+I am a specialized Smart Contract Auditor and Web3 Security Researcher focusing on **State-Breaker Vulnerabilities**, **Zero-State Anomalies**, and **Cross-Chain Accounting Desyncs**. I systematically hunt for mathematical and architectural edge cases that automated static analyzers and traditional auditing frameworks miss.
 
-Welcome. I am **Julien James** (`timeless-hayoka`). I build cognitive architectures, self-regulating systems, and persistent AI companions. 
+## 🚀 Professional Focus
+* **EVM Assembly Optimization Analysis:** Uncovering unaligned memory pointers, truncation desyncs, and block overflow vulnerabilities in highly-optimized `.sol` libraries.
+* **Economic Logic & Boundary Math:** Identifying fractional dust desyncs and multi-protocol integration failures.
+* **Infrastructure Auditing:** Validating cross-chain bridging architectures and Zero-Knowledge (ZK) protocol limits.
 
-My primary work is **[PHI // DRIFT](https://github.com/timeless-hayoka/infj-bot)**, a 5-layer homeostatic cognitive architecture designed for persistent, state-aware AI companionship. It was built from scratch over five months using a 2012 Dell Inspiron and a CPU-only mini tower—no labs, no GPUs, just pure engineering.
+## 🏆 Recent High-Impact Disclosures & Contributions
 
----
+My recent security research has directly patched and secured several of the most utilized infrastructure repositories in the ecosystem:
 
-## ⚡ Flagship Project: PHI // DRIFT
+* **[OpenZeppelin Contracts (PR #6584)](https://github.com/OpenZeppelin/openzeppelin-contracts/pull/6584):** Discovered and patched a high-severity unaligned memory pointer corruption in the `LowLevelCall.returnData()` inline assembly block. 
+* **[Solmate (PR #436)](https://github.com/transmissions11/solmate/pull/436):** Optimized ERC4626 vault math and stripped redundant assembly masking in `SafeTransferLib`, securing the vault against zero-asset edge cases.
+* **[Silo Finance (PR #1946)](https://github.com/silo-finance/silo-contracts-v3/pull/1946):** Fixed a dual-path mathematical divergence causing silent under-accrual of protocol fees.
+* **Hyperliquid:** Discovered critical Tier 0 Oracle Mispricing and Tier 1 Bridge Accounting Desync vulnerabilities (Private Immunefi Disclosures).
+* **EigenLayer:** Discovered High-Severity Withdrawal Queue BSF Over-Slashing (Private Immunefi Disclosure).
 
-### 🔗 Quick Links
-*   **Live Interactive Demo**: [timeless-hayoka.github.io/infj-bot](https://timeless-hayoka.github.io/infj-bot/) *(Chat with DRIFT and monitor its internal telemetry in real-time)*
-*   **Code Repository**: [timeless-hayoka/infj-bot](https://github.com/timeless-hayoka/infj-bot)
-*   **Research Paper**: [Zenodo Publication](https://doi.org/10.5281/zenodo.20350249) | [Read PDF](https://zenodo.org/records/20350249/files/DRIFT_paper_v4.pdf)
-*   **Hugging Face Observatory**: [spaces/crexs/phi-drift](https://huggingface.co/spaces/crexs/phi-drift)
+*For a full breakdown of my methodology and vulnerabilities found, see my [Web3 Security Audit Portfolio](https://github.com/timeless-hayoka/web3-security-portfolio).*
 
----
+## 🛠️ Tooling & Stack
+* **Languages:** Solidity, Yul (Assembly), Python, Rust
+* **Frameworks:** Foundry, Hardhat, Halmos
+* **Autonomous Hunting:** Architect of **Forge V5**, a custom pipeline utilizing continuous AI state-breaker matrix validation and directed invariant fuzzing.
 
-### 🌌 Cognitive Architecture Overview
-
-```
-                      [ USER INPUT ]
-                            │
-              ┌─────────────┴─────────────┐
-              │    AURA (Emotional Reg)   │
-              └─────────────┬─────────────┘
-                            ▼
-              ┌───────────────────────────┐
-              │     VIBE (Intuition)      │
-              └─────────────┬─────────────┘
-                            ▼
-              ┌───────────────────────────┐
-              │    LOGIC & COGNILAYER     │◄─── [ HOMEOSTASIS ]
-              └─────────────┬─────────────┘      (Energy, Connection,
-                            ▼                    Coherence, Integrity)
-              ┌───────────────────────────┐
-              │     MEME (The Watcher)    │
-              └─────────────┬─────────────┘
-                            ▼
-              ┌───────────────────────────┐
-              │    NEXUS (Voice Synthesis)│◄─── [ SHADOW LAYER ]
-              └─────────────┬─────────────┘      (Uncertainty / Archetypes)
-                            ▼
-                     [ BOT RESPONSE ]
-```
-
-### 🧬 Core Subsystems
-
-1.  **Global Workspace (Tiered Attention)**
-    Salience-weighted competitive queueing selects which items enter the bot's conscious focus (Spotlight) or stay in preconscious bands before SQL eviction.
-2.  **Hive Mind (Distributed Cognition)**
-    A 7-voice deliberative council (Aura, Logic, Meme, Vibe, Ethos, Pulse, Nexus) that runs decentralized consensus voting prior to producing output.
-3.  **Homeostatic Feedback Loops**
-    Dynamically balances 7 variables (Coherence, Energy, Autonomy, Connection, Growth, Integration, Integrity) which decay and adjust depending on the conversational load.
-4.  **Jungian Shadow Integration**
-    Contextually tracks unintegrated states and latent variables, dynamically adapting the bot's tone under stress and allowing active integration dialogues.
+## 📬 Connect
+* **Immunefi:** [timeless-hayoka]
+* **Twitter / X:** [@timeless-hayoka]
 
 ---
-
-## 🛠️ Tech Stack & Philosophy
-*   **Languages**: Python, C++, Modern Javascript
-*   **Libraries & DBs**: PyTorch, ChromaDB, SQLite3, FastAPI, Socket.IO
-*   **Cognitive Principles**: SOLID engineering, Big O optimization ($O(\log n)$ memory lookups), allostatic regulation, integrated information ($\Phi$ metrics)
-
----
-
-*“To those that search — knowledge is a lonely path, but it doesn't have to be. Believe in yourself always, but allow others in.”*
-
-📬 **Reach out**: Create an issue on [infj-bot](https://github.com/timeless-hayoka/infj-bot/issues) or check my research profile on Zenodo.
+*"The most dangerous vulnerabilities aren't syntax errors; they are the forgotten mathematical boundaries."*
