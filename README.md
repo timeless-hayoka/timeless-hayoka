@@ -6,13 +6,13 @@ I build systems with a strong personal style, but I never compromise on rigor, r
 
 ## Selected Work
 
-- `infj-bot` - PHI // DRIFT — A 5-layer homeostatic cognitive architecture for persistent, state-aware AI companions.
-- `LOTUS-ACADEMY` - LOTUS Academy - The Sovereign Knowledge Engine. A high-fidelity learning path for Red Team, Blue Team, Programmers, and Hackers.
+- `infj-bot` - PHI // DRIFT, a 5-layer homeostatic cognitive architecture for persistent, state-aware AI companions.
 - `AI-Forge-Protocol` - Forge V5 validation and patch-gating workflow for safe iterative code changes.
+- `LOTUS-ACADEMY` - A high-fidelity cybersecurity learning platform for Red Team, Blue Team, Programmers, and Hackers.
 - `bounty-bot` - Security research automation and evidence tracking.
 - `cyber-tools` - Utilities for scoped security research workflows.
 
-## What I Focus On
+## Focus
 
 - structured reasoning systems
 - reproducible validation
