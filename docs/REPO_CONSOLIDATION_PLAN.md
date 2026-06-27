@@ -49,14 +49,20 @@ Run (dry-run first):
 
 ## Local duplicates (pick one canonical tree)
 
-| GitHub | Canonical local path | Notes |
-|--------|---------------------|-------|
-| infj-bot | `/home/crexs/infj_bot` | **`anchor` branch** is live dev (7GB with venv — never push venv) |
-| infj-bot (stale) | `/home/crexs/infj-bot` | 15MB snapshot on `master`; retire after default branch switch |
-| LOTUS-ACADEMY | `/home/crexs/lotus-academy` | Has build artifacts; sync clean tree to GitHub |
-| LOTUS-ACADEMY (clean) | `/home/crexs/LOTUS-ACADEMY` | 1.2MB — closer to what GitHub should look like |
-| AI-Forge-Protocol | `/home/crexs/AI-Forge-Protocol` | Push from here (18MB) |
-| AI-Forge-Protocol (bloated) | `/home/crexs/ai_forge_protocol` | 5GB venv — delete local copy after sync |
+See [ARCHITECTURE.md](../ARCHITECTURE.md) for ownership rules. **Do not delete** duplicate directories until `./scripts/verify_duplicate_repo_deps.sh` passes.
+
+| GitHub | Canonical local path | Retire (verify first) |
+|--------|---------------------|------------------------|
+| infj-bot | `/home/crexs/infj_bot` | `/home/crexs/infj-bot` |
+| AI-Forge-Protocol | `/home/crexs/AI-Forge-Protocol` | `/home/crexs/ai_forge_protocol` |
+| LOTUS-ACADEMY | `/home/crexs/LOTUS-ACADEMY` | `/home/crexs/lotus-academy` if bloated |
+
+```bash
+./scripts/verify_duplicate_repo_deps.sh
+# If clean, rename — do not rm -rf:
+# mv /home/crexs/infj-bot /home/crexs/infj-bot.retired.YYYYMMDD
+# mv /home/crexs/ai_forge_protocol /home/crexs/ai_forge_protocol.retired.YYYYMMDD
+```
 
 ## Never push to GitHub
 
@@ -78,20 +84,32 @@ See [SCRIPT_REUSE_MAP.md](./SCRIPT_REUSE_MAP.md).
 3. Delete stale `cursor/*` and `claude/*` branches on infj-bot (keep `anchor`, `main`/`master` until merged)
 4. Add/update `.gitignore` on every Tier 1 repo
 
-### Phase B — Canonical sync (1–2 days)
+### Phase B — Canonical sync ✅ (2026-06-27)
 
 1. Push infj_bot `anchor` → infj-bot (no venv)
-2. Merge lotus-academy useful `src/` into LOTUS-ACADEMY; drop node_modules from git
-3. Point AI-Forge-Protocol imports at installable `drift` package path, not `/home/crexs`
+2. Forge V5 gatekeeper → AI-Forge-Protocol; infj-bot uses `core/forge_gate.py`
+3. Private drift docs → `infj_bot/docs/legacy/`; repos archived
+4. Default branch `anchor`; stale agent branches pruned
 
-### Phase C — Extract shared libraries (ongoing)
+### Phase C — Operational maturity (next)
 
-1. **forge-gate** — move `forge_v5_gatekeeper.py` from infj_bot → AI-Forge-Protocol (or shared `timeless-hayoka/tools/`)
-2. **anchor-cli** — ANCHOR already owns `anchor_cli.py`; infj_bot scripts call it, don’t duplicate
-3. **llm-minify** — optional dependency in infj-bot prompt builder
-4. **bounty fidelity** — `fidelity_runner.py` consumed by ANCHOR case export format
+See [ARCHITECTURE.md](../ARCHITECTURE.md#phase-c--operational-maturity).
 
-### Phase D — Finish lines
+Benchmark → Regression → Outcome → Insight → Strategy
+
+1. Historical benchmark trends (ANCHOR)
+2. Automatic outcome analytics (ledger → reports)
+3. Learning-based hunt prioritization (infj-bot + vault)
+4. Independent install / reproduction guide
+5. Benchmark expansion: DVD → Ethernaut → additional families
+
+### Phase D — Extract shared libraries (ongoing)
+
+1. **anchor-cli** — ANCHOR owns `anchor_cli.py`; infj_bot scripts call it, don’t duplicate
+2. **llm-minify** — optional dependency in infj-bot prompt builder
+3. **bounty fidelity** — `fidelity_runner.py` consumed by ANCHOR case export format
+
+### Phase E — Finish lines
 
 - ANCHOR: README quickstart + one benchmark path green in CI
 - infj-bot: ANCHOR vault context + `/api/anchor/snapshot` documented

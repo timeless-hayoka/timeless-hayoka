@@ -43,12 +43,16 @@ ANCHOR is the cockpit. The other repos are proof that the idea generalizes.
 
 ## Repo cleanup
 
+**Start here:** [ARCHITECTURE.md](ARCHITECTURE.md) — canonical repo ownership, data flow, and merge policy.
+
 Consolidating GitHub and local trees so only finished, reusable code stays public:
 
+- [ARCHITECTURE.md](ARCHITECTURE.md) — definitive component map (ANCHOR / AFP / infj-bot)
 - [REPO_CONSOLIDATION_PLAN.md](docs/REPO_CONSOLIDATION_PLAN.md) — tiers, archive list, phases
 - [SCRIPT_REUSE_MAP.md](docs/SCRIPT_REUSE_MAP.md) — which scripts move into which repo
 - `./scripts/github_repo_audit.sh` — refresh audit markdown
 - `./scripts/github_repo_cleanup.sh --dry-run` — preview fork archives
+- `./scripts/verify_duplicate_repo_deps.sh` — before deleting local duplicate dirs
 
 ## How I Work
 
