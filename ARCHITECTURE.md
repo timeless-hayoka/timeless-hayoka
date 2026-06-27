@@ -158,6 +158,8 @@ flowchart LR
 5. **No hardcoded `/home/crexs/...` paths** — Use `AFP_ROOT`, `DRIFT_ROOT`, `ANCHOR_DATA_ROOT`, or package install.
 6. **Vault is not git** — Knowledge corpus and Chroma data live on `ANCHOR_DATA_ROOT`; never commit them.
 7. **Legacy is read-only** — `docs/legacy/` in infj-bot is archive; new docs go in active trees.
+8. **Trends are canonical** — Historical benchmark comparison lives in `ANCHOR/anchor_trends.py`. Dashboard, strategy, and reports consume it; do not reimplement trend math elsewhere.
+9. **No new top-level repos** — Extend ANCHOR, AI-Forge-Protocol, infj-bot, or timeless-hayoka. See [ROADMAP.md](ROADMAP.md).
 
 ---
 
@@ -220,9 +222,9 @@ flowchart TB
 
 Phase C priorities (in order):
 
-1. **`anchor benchmark trends`** — historical pass/fail and timing from published manifests.
-2. **`anchor outcome insights`** — expand beyond counts to recurring causes and lessons (partial today).
-3. **`anchor strategy`** — actionable recommendations from ledger + run history.
+1. **`anchor benchmark trends`** — ✅ shipped in `anchor_trends.py` (CLI + HTTP; canonical historical source).
+2. **`anchor strategy`** — ROI-ranked recommendations; consumes trends + outcome ledger.
+3. **`anchor outcome insights`** — expand beyond counts to recurring causes and lessons (partial today).
 4. **Independent reproduction guide** — fresh machine reproduces one published benchmark (credibility milestone).
 
 Deferred to **Phase D**: new benchmark families, cross-benchmark analytics, adaptive prioritization at scale.
