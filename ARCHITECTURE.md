@@ -218,12 +218,12 @@ flowchart TB
 | **Regression** | What changed? | ANCHOR + AFP | Existing publish + `REGRESSION_REPORT.md` |
 | **Outcome** | What was the result? | ANCHOR | Ledger + expanded `anchor outcome insights` |
 | **Insight** | Why did it happen? | ANCHOR + infj-bot | Recurring causes, lessons with evidence links |
-| **Strategy** | What next? | ANCHOR | `anchor strategy` (ROI-ranked recommendations) |
+| **Strategy** | What next? | ANCHOR | `anchor strategy` (consumes `anchor_trends` + ledger) |
 
 Phase C priorities (in order):
 
 1. **`anchor benchmark trends`** — ✅ shipped in `anchor_trends.py` (CLI + HTTP; canonical historical source).
-2. **`anchor strategy`** — ROI-ranked recommendations; consumes trends + outcome ledger.
+2. **`anchor strategy`** — ✅ shipped in `anchor_strategy.py` (CLI + HTTP; consumes trends, no duplicate math).
 3. **`anchor outcome insights`** — expand beyond counts to recurring causes and lessons (partial today).
 4. **Independent reproduction guide** — fresh machine reproduces one published benchmark (credibility milestone).
 

@@ -13,16 +13,12 @@ Companion docs:
 
 **Do not add new top-level repositories** without updating ARCHITECTURE.md and this roadmap.
 
-Current boundaries are sufficient:
-
 | Repo | Role |
 |------|------|
-| **ANCHOR** | Evidence, benchmarks, outcome ledger, trend engine |
+| **ANCHOR** | Evidence, benchmarks, outcome ledger, trend + strategy engines |
 | **AI-Forge-Protocol** | Validation infrastructure, Forge V5 gatekeeper |
 | **infj-bot** | Reasoning layer, dashboard, operator interface |
 | **timeless-hayoka** | Public documentation and portfolio index |
-
-Every additional repo increases coordination overhead. New capabilities belong in one of these four unless there is an exceptional, documented reason.
 
 ---
 
@@ -30,133 +26,98 @@ Every additional repo increases coordination overhead. New capabilities belong i
 
 | Phase | Status | Theme |
 |-------|--------|--------|
-| **A** | ✅ Complete | Repository consolidation (GitHub hygiene, archives, branch cleanup) |
-| **B** | ✅ Complete | Proof gate, outcome ledger, regression reporting, governance docs |
-| **C** | 🟡 In progress | Operational maturity — learning loop before corpus expansion |
-| **D** | ⬜ Planned | Cross-benchmark analytics, adaptive prioritization, new benchmark families |
+| **A** | ✅ Complete | Repository consolidation |
+| **B** | ✅ Complete | Governance, proof gate, regression reporting |
+| **C** | 🟡 In progress | Operational maturity — connect existing components |
+| **D** | ⬜ Planned | Corpus expansion after learning loop is credible |
 
 ---
 
-## Phase A ✅ — Done when
+## Phase C progress
 
-- [x] Tier 2 upstream forks archived on GitHub
-- [x] **infj-bot** default branch → `anchor`
-- [x] Stale agent branches pruned
-- [x] One canonical local tree per core repo documented
+| Deliverable | Status |
+|-------------|:------:|
+| Canonical trend engine (`anchor_trends.py`) | ✅ |
+| CLI trends (`anchor benchmark trends`) | ✅ |
+| HTTP trends (`/api/anchor/benchmark/trends`) | ✅ |
+| Snapshot integration (`benchmark_trends`) | ✅ |
+| Stability metrics in trends (benchmark + challenge bars) | ✅ |
+| Strategy engine (`anchor_strategy.py`) | ✅ |
+| CLI strategy (`anchor strategy`) | ✅ |
+| HTTP strategy (`/api/anchor/strategy`) | ✅ |
+| Enhanced outcome analytics (grouped patterns) | 🟡 |
+| Independent reproduction guide | ⏳ |
+| Dashboard trend visuals (consume API, no local math) | ⏳ |
 
 ---
 
-## Phase B ✅ — Done when
+## Recommended build order
 
-- [x] [ARCHITECTURE.md](ARCHITECTURE.md) published (ownership, diagrams, merge policy)
-- [x] ANCHOR publish flow + regression reports (`REGRESSION_REPORT.md`)
-- [x] Outcome ledger CLI (`anchor outcome history|summary|insights|add`)
-- [x] Duplicate local dirs verified and retired (`.retired.20260627`)
-- [x] `anchor` → `master` merge gated by objective checklist
+1. ✅ **Canonical trend engine** — single source for historical comparison
+2. ✅ **`anchor strategy`** — consumes trends + ledger; never recomputes trends
+3. 🟡 **Outcome insights** — grouped failure patterns + recommendations (partial)
+4. ⏳ **Independent reproduction guide** — validate on clean machine/container
+5. ⏳ **Dashboard visuals** — read `benchmark_trends` / `benchmark_strategy` from API
+6. ⬜ **Phase D** — new benchmark families only after Phase C exit criteria
 
 ---
 
-## Phase C 🟡 — Operational maturity
+## Phase C exit criteria
 
-**Goal:** Close the feedback loop from benchmark to strategy **using existing benchmark families** before adding corpus surface area.
+- [x] Benchmark trends implemented and exposed (CLI + HTTP + snapshot)
+- [x] Strategy recommendations implemented (CLI + HTTP + snapshot)
+- [x] Stability surfaced in trend output
+- [ ] Outcome insights surfaces recurring causes with evidence links (grouping shipped; ledger lessons still sparse)
+- [ ] Independent install guide verified without prior `/home/crexs` layout
+- [ ] Dashboard surfaces trends/strategy read-only from ANCHOR API
+- [ ] ARCHITECTURE.md and ANCHOR README agree on CLI/API surface
+
+---
+
+## Dependency graph (Phase C)
 
 ```text
-Benchmark  →  Regression  →  Outcome  →  Insight  →  Strategy
-   │              │              │           │            │
-What happened?  What changed?  Result?    Why?      What next?
+anchor_trends.py
+        │
+        ├──────── anchor benchmark trends (CLI)
+        ├──────── /api/anchor/benchmark/trends
+        ├──────── snapshot.benchmark_trends
+        │
+        └──────── anchor_strategy.py
+                    │
+                    ├──────── anchor strategy (CLI)
+                    ├──────── /api/anchor/strategy
+                    └──────── snapshot.benchmark_strategy
 ```
 
-### Principle: learning loop before expansion
-
-Existing methodology surface is enough for Phase C:
-
-- DVD (Damn Vulnerable DeFi)
-- Ethernaut scaffold
-- ScaBench
-- DeFiHackLabs scaffold
-
-**Do not add new benchmark families until Phase C exit criteria are met.**
-
-### Canonical trend engine
-
-Historical comparison lives in **`ANCHOR/anchor_trends.py`** — one module, multiple consumers:
-
-| Consumer | Interface |
-|----------|-----------|
-| CLI | `anchor benchmark trends` (`--json` for machines) |
-| HTTP | `GET /api/anchor/benchmark/trends` |
-| Snapshot | `benchmark_trends` field in `/api/anchor/snapshot` |
-| Strategy (planned) | imports `compute_benchmark_trends` — no duplicate math |
-| Dashboard (planned) | read-only from API or JSON — no local recompute |
-
-### Priority order
-
-| Priority | Deliverable | Status |
-|----------|-------------|--------|
-| 1 ⭐ | `anchor benchmark trends` | ✅ Implemented (`anchor_trends.py`) |
-| 2 ⭐ | `anchor strategy` | ⬜ Planned (consumes trends + outcome ledger) |
-| 3 | Expand `anchor outcome insights` | 🟡 Partial |
-| 4 | Independent reproduction guide | ⬜ Planned |
-
-Example target for `anchor strategy`:
-
-```text
-Highest ROI Next Hunt
-
-Wallet Mining
-
-Reason
-
-Repeated timeout
-
-Expected payoff
-
-Completes DVD Phase 1 benchmark
-
-Confidence
-
-High
-```
-
-### Phase C exit criteria (objective)
-
-- [x] Benchmark trends implemented (`anchor_trends.py` + CLI + HTTP)
-- [ ] Strategy recommendations implemented (`anchor strategy`)
-- [ ] Outcome insights expanded (recurring causes with evidence links, not just counts)
-- [ ] Independent install guide verified on clean machine (no prior `/home/crexs` layout)
-- [ ] Dashboard surfaces trend information (read-only from trend API)
-- [ ] CLI and README document trends + strategy surface
-- [ ] ARCHITECTURE.md agrees with shipped CLI/API
+Strategy **consumes** `compute_benchmark_trends()` and `load_outcome_entries()` — it does not duplicate trend math.
 
 ---
 
-## Phase D ⬜ — Done when
+## Phase D ⬜ — After Phase C
 
-- [ ] Phase C exit criteria all checked
-- [ ] Additional benchmark families beyond current scaffolds
-- [ ] Cross-benchmark analytics (shared failure modes across families)
-- [ ] Adaptive hunt prioritization integrated with Trinity
-- [ ] Shared library extraction per [REPO_CONSOLIDATION_PLAN.md](docs/REPO_CONSOLIDATION_PLAN.md)
+- Additional benchmark families (Ethernaut, DeFiHackLabs, ScaBench expansion)
+- Cross-benchmark analytics
+- Adaptive prioritization in Trinity (consume ANCHOR strategy JSON)
 
 ---
 
-## Branch and release policy
+## Branch policy
 
-- **Active development:** `infj-bot` branch `anchor` (GitHub default)
-- **Release to `master`:** only when [ARCHITECTURE.md merge checklist](ARCHITECTURE.md#branch-policy-anchor-vs-master) is satisfied
-- **Portfolio docs:** `timeless-hayoka` `main` is the index; update this file when a phase completes
+- **Active development:** `infj-bot` branch `anchor`
+- **Release to `master`:** [ARCHITECTURE.md merge checklist](ARCHITECTURE.md#branch-policy-anchor-vs-master)
 
 ---
 
 ## Retired local directories
 
-Renamed 2026-06-27 after `verify_duplicate_repo_deps.sh` passed. **Hold ~2 weeks**, then delete if nothing breaks:
+Hold until ~2026-07-11, then delete if nothing breaks:
 
-| Retired path | Canonical replacement |
-|--------------|----------------------|
+| Retired | Canonical |
+|---------|-----------|
 | `/home/crexs/infj-bot.retired.20260627` | `/home/crexs/infj_bot` |
 | `/home/crexs/ai_forge_protocol.retired.20260627` | `/home/crexs/AI-Forge-Protocol` |
 
 ---
 
-*Last updated: 2026-06-27 — Phase C started; trend engine shipped.*
+*Last updated: 2026-06-27 — strategy engine shipped; connecting components is Phase C focus.*
