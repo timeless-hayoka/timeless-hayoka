@@ -47,6 +47,7 @@ ANCHOR is the cockpit. The other repos are proof that the idea generalizes.
 
 Consolidating GitHub and local trees so only finished, reusable code stays public:
 
+- [ROADMAP.md](ROADMAP.md) — engineering phases (A–D) and Phase C priorities
 - [ARCHITECTURE.md](ARCHITECTURE.md) — definitive component map (ANCHOR / AFP / infj-bot)
 - [REPO_CONSOLIDATION_PLAN.md](docs/REPO_CONSOLIDATION_PLAN.md) — tiers, archive list, phases
 - [SCRIPT_REUSE_MAP.md](docs/SCRIPT_REUSE_MAP.md) — which scripts move into which repo

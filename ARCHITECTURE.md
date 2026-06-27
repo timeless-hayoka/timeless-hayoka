@@ -4,6 +4,7 @@ Definitive reference for **where code lives**, **how data flows**, and **who own
 
 Related docs:
 
+- [ROADMAP.md](ROADMAP.md) — engineering phases, Phase C priorities, exit criteria
 - [REPO_CONSOLIDATION_PLAN.md](docs/REPO_CONSOLIDATION_PLAN.md) — GitHub tiers, archive list, phase history
 - [SCRIPT_REUSE_MAP.md](docs/SCRIPT_REUSE_MAP.md) — script-level extraction map
 
@@ -162,14 +163,14 @@ flowchart LR
 
 ## Canonical local paths
 
-| GitHub repo | Canonical directory | Retire (do not delete until verified) |
-|-------------|---------------------|-------------------------------------|
-| infj-bot | `/home/crexs/infj_bot` | `/home/crexs/infj-bot` |
-| AI-Forge-Protocol | `/home/crexs/AI-Forge-Protocol` | `/home/crexs/ai_forge_protocol` |
+| GitHub repo | Canonical directory | Retired duplicate (hold ~2 weeks) |
+|-------------|---------------------|-----------------------------------|
+| infj-bot | `/home/crexs/infj_bot` | `/home/crexs/infj-bot.retired.20260627` |
+| AI-Forge-Protocol | `/home/crexs/AI-Forge-Protocol` | `/home/crexs/ai_forge_protocol.retired.20260627` |
 | ANCHOR | `/home/crexs/ANCHOR` | — |
 | LOTUS-ACADEMY | `/home/crexs/LOTUS-ACADEMY` (prefer clean tree) | `/home/crexs/lotus-academy` if bloated |
 
-Run dependency check before removing a duplicate tree:
+Before deleting a retired tree, re-run:
 
 ```bash
 ./scripts/verify_duplicate_repo_deps.sh
@@ -195,7 +196,7 @@ If any item fails, keep maturing on `anchor`. Merging is a release decision, not
 
 ## Phase C — Operational maturity
 
-Next major milestone: closed loop from benchmark to strategy.
+Next major milestone: closed loop from benchmark to strategy. **Complete the learning loop on existing benchmark families before expanding the corpus** (see [ROADMAP.md](ROADMAP.md)).
 
 ```mermaid
 flowchart TB
@@ -209,21 +210,22 @@ flowchart TB
   S -.->|prioritize next hunt| B
 ```
 
-| Stage | Owner | Deliverable |
-|-------|-------|-------------|
-| **Benchmark** | ANCHOR | Historical trend store; DVD → Ethernaut → additional families |
-| **Regression** | ANCHOR + AFP | Re-run gate on prior cases; fail on drift |
-| **Outcome** | ANCHOR + infj-bot | Automatic outcome analytics from ledger |
-| **Insight** | infj-bot | Learning-based hunt prioritization from vault + cases |
-| **Strategy** | Portfolio | Independent install/repro guide; one-command demo |
+| Stage | Question | Owner | Phase C deliverable |
+|-------|----------|-------|---------------------|
+| **Benchmark** | What happened? | ANCHOR | `anchor benchmark trends` |
+| **Regression** | What changed? | ANCHOR + AFP | Existing publish + `REGRESSION_REPORT.md` |
+| **Outcome** | What was the result? | ANCHOR | Ledger + expanded `anchor outcome insights` |
+| **Insight** | Why did it happen? | ANCHOR + infj-bot | Recurring causes, lessons with evidence links |
+| **Strategy** | What next? | ANCHOR | `anchor strategy` (ROI-ranked recommendations) |
 
-Concrete Phase C tasks:
+Phase C priorities (in order):
 
-1. **Historical benchmark trends** — timestamped runs under ANCHOR; chart pass/fail over time.
-2. **Automatic outcome analytics** — aggregate Trinity/ANCHOR ledger JSONL into summary reports.
-3. **Hunt prioritization** — rank targets from outcomes + vault signals (infj-bot / Trinity).
-4. **Install guide** — single doc: ANCHOR + infj-bot + AFP + vault mount, verified on clean machine.
-5. **Benchmark expansion** — DVD (done path) → Ethernaut → next family with same adapter pattern.
+1. **`anchor benchmark trends`** — historical pass/fail and timing from published manifests.
+2. **`anchor outcome insights`** — expand beyond counts to recurring causes and lessons (partial today).
+3. **`anchor strategy`** — actionable recommendations from ledger + run history.
+4. **Independent reproduction guide** — fresh machine reproduces one published benchmark (credibility milestone).
+
+Deferred to **Phase D**: new benchmark families, cross-benchmark analytics, adaptive prioritization at scale.
 
 ---
 
@@ -236,8 +238,9 @@ Concrete Phase C tasks:
 | Where does a dashboard panel go? | infj-bot |
 | Can I copy `forge_v5_gatekeeper.py`? | No — depend on AFP |
 | Which infj-bot folder is canonical? | `infj_bot` with underscore |
-| Safe to delete `infj-bot/` duplicate? | Only after `verify_duplicate_repo_deps.sh` is clean |
+| Safe to delete retired duplicate? | Only after ~2 weeks and `verify_duplicate_repo_deps.sh` is clean |
+| Where is the phase plan? | [ROADMAP.md](ROADMAP.md) |
 
 ---
 
-*Last updated: 2026-06-27 — portfolio consolidation Phase B complete.*
+*Last updated: 2026-06-27 — Phase B complete; duplicate trees retired; Phase C in progress.*

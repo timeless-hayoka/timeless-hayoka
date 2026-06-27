@@ -91,17 +91,18 @@ See [SCRIPT_REUSE_MAP.md](./SCRIPT_REUSE_MAP.md).
 3. Private drift docs → `infj_bot/docs/legacy/`; repos archived
 4. Default branch `anchor`; stale agent branches pruned
 
-### Phase C — Operational maturity (next)
+### Phase C — Operational maturity (in progress)
 
-See [ARCHITECTURE.md](../ARCHITECTURE.md#phase-c--operational-maturity).
+See [ROADMAP.md](../ROADMAP.md) and [ARCHITECTURE.md](../ARCHITECTURE.md#phase-c--operational-maturity).
 
-Benchmark → Regression → Outcome → Insight → Strategy
+Benchmark → Regression → Outcome → Insight → Strategy — **learning loop on existing families first**.
 
-1. Historical benchmark trends (ANCHOR)
-2. Automatic outcome analytics (ledger → reports)
-3. Learning-based hunt prioritization (infj-bot + vault)
-4. Independent install / reproduction guide
-5. Benchmark expansion: DVD → Ethernaut → additional families
+1. `anchor benchmark trends` (ANCHOR)
+2. Expand `anchor outcome insights` (recurring causes, not just counts)
+3. `anchor strategy` (ROI-ranked recommendations)
+4. Independent install / reproduction guide (credibility milestone)
+
+Benchmark family expansion → **Phase D** (after Phase C exit criteria met).
 
 ### Phase D — Extract shared libraries (ongoing)
 
