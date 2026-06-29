@@ -46,8 +46,8 @@ Companion docs:
 | CLI strategy (`anchor strategy`) | ✅ |
 | HTTP strategy (`/api/anchor/strategy`) | ✅ |
 | Enhanced outcome analytics (grouped patterns) | 🟡 |
-| Independent reproduction guide | ⏳ |
-| Dashboard trend visuals (consume API, no local math) | ⏳ |
+| Independent reproduction guide | ✅ [ANCHOR/docs/REPRODUCTION.md](https://github.com/timeless-hayoka/ANCHOR/blob/main/docs/REPRODUCTION.md) |
+| Dashboard trend visuals (consume API, no local math) | ✅ snapshot panels |
 
 ---
 
@@ -56,7 +56,7 @@ Companion docs:
 1. ✅ **Canonical trend engine** — single source for historical comparison
 2. ✅ **`anchor strategy`** — consumes trends + ledger; never recomputes trends
 3. 🟡 **Outcome insights** — grouped failure patterns + recommendations (partial)
-4. ⏳ **Independent reproduction guide** — validate on clean machine/container
+4. ✅ **Independent reproduction guide** — validate on clean machine/container (doc shipped; external validation pending)
 5. ⏳ **Dashboard visuals** — read `benchmark_trends` / `benchmark_strategy` from API
 6. ⬜ **Phase D** — new benchmark families only after Phase C exit criteria
 

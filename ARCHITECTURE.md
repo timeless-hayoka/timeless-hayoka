@@ -23,8 +23,9 @@ Each capability has **one owner repo**. Do not re-implement in a sibling repo; i
 |------|----------------|
 | Benchmark framework (DVD, Ethernaut, SCabench adapters) | Trinity chat / companion UI |
 | Outcome ledger and case artifacts | Forge syntax gatekeeper |
-| Evidence lifecycle (claim → reproduce → sign) | Long-term knowledge corpus storage |
-| `anchor_cli.py`, `anchor_server.py`, `anchor_storage.py` | Dashboard front-end (lives in infj-bot) |
+| Evidence lifecycle (claim → reproduce → sign) | Dashboard front-end (lives in infj-bot) |
+| Structured `knowledge/` corpus + `KnowledgeProvider` (CLI, HTTP, MCP via infj-bot) | AnchorVault mirror / Chroma on disk (env paths) |
+| `anchor_cli.py`, `anchor_server.py`, `anchor_storage.py` | |
 
 **External data:** benchmark corpora under `ANCHOR/benchmarks/`; archived outcomes on `ANCHOR_DATA_ROOT` / AnchorVault when configured.
 
