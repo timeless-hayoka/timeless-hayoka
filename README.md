@@ -25,9 +25,12 @@ ANCHOR is built to leave behind a reviewable artifact, not just a verdict:
 
 That is the public story I want to be known for: signal to evidence, not signal to hype.
 
-Visible repo:
+Explore ANCHOR:
 
-- [ANCHOR](https://github.com/timeless-hayoka/ANCHOR)
+- [Live website and interactive demo](https://timeless-hayoka.github.io/ANCHOR/) — browser-only previews, methodology, and published benchmark links
+- [Source repository](https://github.com/timeless-hayoka/ANCHOR)
+
+The website is a static demonstration; it does not run scans, connect to a live engine, or verify findings.
 
 ## Supporting Work
 
