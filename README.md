@@ -1,85 +1,66 @@
-# Timeless Hayoka
+# Timeless Hayoka | Security Researcher
 
-I build evidence gates for AI and security workflows.
+**Independent ethical hacker · Web3 security research · Evidence-driven vulnerability validation**
 
-The pattern is simple: take a claim, run it through a reproducible harness, and promote it only when the evidence holds. Proof before ship. If it cannot be rerun, reviewed, or signed, it is not done yet.
+I build tools that turn security hypotheses into reproducible evidence. My focus is authorized smart-contract research, adversarial testing, AI-assisted analysis, and engineering workflows that distinguish a promising signal from a demonstrated finding.
+
+**Principle:** *Question assumptions. Reproduce the behavior. Preserve the evidence.*
+
+[ANCHOR source](https://github.com/timeless-hayoka/ANCHOR) · [ANCHOR browser demo](https://timeless-hayoka.github.io/ANCHOR/) · [Portfolio architecture](ARCHITECTURE.md)
 
 ## Flagship: ANCHOR
 
-ANCHOR is the flagship because it has the clearest audience and the most finished artifact: a local-first proof gate for authorized smart-contract security research.
+[ANCHOR](https://github.com/timeless-hayoka/ANCHOR) is a local-first, proof-gated research platform for authorized smart-contract investigations. It tracks signals, benchmark outcomes, case evidence, and reproduction status rather than treating scanner output as proof.
 
-It turns raw tool signal into a structured case and keeps the full trail:
+**Inspectable starting points:**
+- [Getting started](https://github.com/timeless-hayoka/ANCHOR/blob/main/docs/GETTING_STARTED.md) — local setup and a labeled SARIF corpus.
+- [Proof gate](https://github.com/timeless-hayoka/ANCHOR/blob/main/docs/PROOF_GATE.md) — promotion criteria and evidence states.
+- [Reproduction guide](https://github.com/timeless-hayoka/ANCHOR/blob/main/docs/REPRODUCTION.md) — separate, authorized local reproduction workflow.
+- [Benchmark index](https://github.com/timeless-hayoka/ANCHOR/blob/main/benchmarks/index.json) — published benchmark references.
 
-- `seeded false claim` -> rejected with `REJECTED - INSUFFICIENT EVIDENCE`
-- `FIXTURE CORPUS - REAL TOOL EXECUTION` -> reproducible specimen run
-- `REPRODUCED_REAL` -> a Foundry proof actually runs against the target
-- `NEGATIVE_CONTROL_PASSED` -> the control stayed clean without pretending it was tested
+The documented SARIF quickstart expects **four labeled cases (3 true positives, 1 true negative)**. This is a *fixture-level signal-processing check*, **not** evidence of a live exploit, external audit, or bounty acceptance. The [static browser demo](https://timeless-hayoka.github.io/ANCHOR/) does not scan live targets.
 
-ANCHOR is built to leave behind a reviewable artifact, not just a verdict:
+## Supporting projects
 
-- source
-- evidence
-- failed attempts
-- successful reproduction
-- remediation
+| Repository | Scope | What to inspect |
+| --- | --- | --- |
+| [infj-bot](https://github.com/timeless-hayoka/infj-bot) | PHI/DRIFT companion reasoning, Trinity orchestration, dashboard, and knowledge integration | [README](https://github.com/timeless-hayoka/infj-bot) |
+| [AI-Forge-Protocol](https://github.com/timeless-hayoka/AI-Forge-Protocol) | Validation harnesses, patch gates, and Forge V5 syntax checks | [README](https://github.com/timeless-hayoka/AI-Forge-Protocol) |
+| [bounty-bot](https://github.com/timeless-hayoka/bounty-bot) | Structured bug-bounty workflow and evidence tracking | [Repository](https://github.com/timeless-hayoka/bounty-bot) |
+| [LOTUS-ACADEMY](https://github.com/timeless-hayoka/LOTUS-ACADEMY) | Cybersecurity learning tracks and hands-on labs | [README](https://github.com/timeless-hayoka/LOTUS-ACADEMY) |
+| [cyber-tools](https://github.com/timeless-hayoka/cyber-tools) | Scoped security research utilities | [Repository](https://github.com/timeless-hayoka/cyber-tools) |
+| [crex](https://github.com/timeless-hayoka/crex) | Cognitive middleware hooks | [Repository](https://github.com/timeless-hayoka/crex) |
 
-That is the public story I want to be known for: signal to evidence, not signal to hype.
+The [architecture map](ARCHITECTURE.md) defines ownership boundaries: ANCHOR owns evidence and benchmark lifecycle; AI Forge owns code validation gates; infj-bot owns Trinity and companion surfaces. These projects are under active development; repository presence does not establish production readiness.
 
-Explore ANCHOR:
+## How I investigate
 
-- [Live website and interactive demo](https://timeless-hayoka.github.io/ANCHOR/) — browser-only previews, methodology, and published benchmark links
-- [Source repository](https://github.com/timeless-hayoka/ANCHOR)
+1. Confirm scope and authorization before testing.
+2. Define an explicit threat model, hypothesis, and expected invariant.
+3. Collect source, tool output, and relevant environmental provenance.
+4. Test in a controlled environment; keep failed attempts and negative controls.
+5. Reproduce a claimed issue independently where possible.
+6. Separate **detected**, **correlated**, **PoC executed**, and **reproduced** states.
+7. Write a clear report with limitations, impact evidence, and remediation.
 
-The website is a static demonstration; it does not run scans, connect to a live engine, or verify findings.
+**No exploit claim is promoted merely because an AI model, scanner, or fixture flags it.** Public benchmarks are not substitutes for verified live findings.
 
-## Supporting Work
+## Research interests
 
-These projects are all variations of the same core idea, applied in different places:
+Smart-contract security · Solidity · Python · Linux · Fuzzing · Static and dynamic analysis · Foundry-based reproduction · Threat modeling · AI-assisted security tooling · Cognitive architectures
 
-- [AI-Forge-Protocol](https://github.com/timeless-hayoka/AI-Forge-Protocol) - validation and patch-gating for safer iterative code changes
-- [bounty-bot](https://github.com/timeless-hayoka/bounty-bot) - evidence tracking and structured bug bounty workflow
-- [infj-bot](https://github.com/timeless-hayoka/infj-bot) - companion reasoning layer and internal AI workflow surface
-- [LOTUS-ACADEMY](https://github.com/timeless-hayoka/LOTUS-ACADEMY) - hands-on security training and operator practice
-- [cyber-tools](https://github.com/timeless-hayoka/cyber-tools) - scoped utilities for research and validation
+## Responsible disclosure
 
-ANCHOR is the cockpit. The other repos are proof that the idea generalizes.
-
-## Repo cleanup
-
-**Start here:** [ARCHITECTURE.md](ARCHITECTURE.md) — canonical repo ownership, data flow, and merge policy.
-
-Consolidating GitHub and local trees so only finished, reusable code stays public:
-
-- [ROADMAP.md](ROADMAP.md) — engineering phases (A–D) and Phase C priorities
-- [ARCHITECTURE.md](ARCHITECTURE.md) — definitive component map (ANCHOR / AFP / infj-bot)
-- [REPO_CONSOLIDATION_PLAN.md](docs/REPO_CONSOLIDATION_PLAN.md) — tiers, archive list, phases
-- [SCRIPT_REUSE_MAP.md](docs/SCRIPT_REUSE_MAP.md) — which scripts move into which repo
-- `./scripts/github_repo_audit.sh` — refresh audit markdown
-- `./scripts/github_repo_cleanup.sh --dry-run` — preview fork archives
-- `./scripts/verify_duplicate_repo_deps.sh` — before deleting local duplicate dirs
-
-## How I Work
-
-- Reproducibility over assertion
-- Honest states over polished fiction
-- Scope and authorization first
-- Evidence does the heavy lifting
-- Smaller claims, stronger proof
-
-## What I Care About
-
-- structured reasoning systems
-- reproducible validation
-- evidence-first workflows
-- security research tooling
-- local-first systems that people can actually run
-
-## Verification
-
-`SHA256:CwsTnS0/92Ymo/TXGQ+iRVfILLN2Q2GZBpN/WFLxOMI`
+I work only within authorized testing scopes and follow program rules and coordinated disclosure practices. Private findings, target-sensitive details, and unverified impact claims are not published here. Public case studies will link to reproducible evidence only when disclosure is permitted.
 
 ## Connect
 
-- Immunefi: `timeless-hayoka`
-- X: `@timelesshayoka`
-- Portfolio: [web3-security-portfolio](https://github.com/timeless-hayoka/web3-security-portfolio)
+- **GitHub:** [@timeless-hayoka](https://github.com/timeless-hayoka)
+- **Immunefi:** `timeless-hayoka` (handle listed in previous profile)
+- **X:** `@timelesshayoka` (handle listed in previous profile)
+
+For technical context, start with [ARCHITECTURE.md](ARCHITECTURE.md), then the linked repositories and their reproducible instructions.
+
+---
+
+*Evidence before hype. Smaller claims, stronger proof.*
