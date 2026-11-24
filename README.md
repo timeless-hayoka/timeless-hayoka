@@ -1,5 +1,10 @@
 # Timeless Hayoka | Security Researcher
 
+**PHI//DRIFT — Founding Mission & Guiding Principles**
+
+*Human Vision. Machine Intelligence. A Future We Build Together.*
+
+
 **Independent ethical hacker · Web3 security research · Evidence-driven vulnerability validation**
 
 I build tools that turn security hypotheses into reproducible evidence. My focus is authorized smart-contract research, adversarial testing, AI-assisted analysis, and engineering workflows that distinguish a promising signal from a demonstrated finding.
